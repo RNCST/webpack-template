@@ -8,7 +8,6 @@ module.exports = {
   //parcel index.html==> webpack은 js를 진입점으로 사용한다.
   //파일을 읽는 진입점 설정
   entry: './js/main.js',
-
   //결과를(번들)을 반환하는 설정
   output: {
     // nodejs에서 요구하는 절대경로를 요구한다.
@@ -20,6 +19,22 @@ module.exports = {
     clean: true
     // build 이후 변경전 내용들을 지움
   
+  },
+
+  module:{
+    rules:[
+      {
+        test: /\.css$/,
+        // .css확장자로 끝나는 파일을 찾아서 test라는 속성으로 매칭해준다.
+        use: [
+          'style-loader',
+          // 실제로 html의 style태그부분에 해석된 부분을 삽입해준다.
+          // style-loader가 먼저 나와야한다.
+          'css-loader'
+          // js에서 css를 가져오고 css를 해석할 수 있게 한다.
+        ]
+      }
+    ]
   },
   // 번들링후 결과물의 처리 방식 등 다양한 플러그인들을 설정
   plugins: [

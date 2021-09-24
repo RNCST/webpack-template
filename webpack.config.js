@@ -24,14 +24,23 @@ module.exports = {
   module:{
     rules:[
       {
-        test: /\.css$/,
+        test: /\.s?css$/,
         // .css확장자로 끝나는 파일을 찾아서 test라는 속성으로 매칭해준다.
         use: [
           'style-loader',
           // 실제로 html의 style태그부분에 해석된 부분을 삽입해준다.
           // style-loader가 먼저 나와야한다.
-          'css-loader'
+          'css-loader',
+          'postcss-loader',
           // js에서 css를 가져오고 css를 해석할 수 있게 한다.
+          'sass-loader'
+        ]
+      },
+      {
+        test: /\.js$/,
+        use: [
+          'babel-loader'
+          //webpack이 babel을 읽기위한 패키지
         ]
       }
     ]
